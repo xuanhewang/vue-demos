@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app2">
+        <span v-bind:title="message">
+            请把鼠标移入数秒
+        </span>
+    </div>
+</body>
+<script type="text/javascript" src="vue.js"></script>
+<script type="text/javascript">
+    var app2=new Vue({
+        el:'#app2',
+        data:{
+            message:'你移入了鼠标'
+        }
+    })
+</script>
+</html>
