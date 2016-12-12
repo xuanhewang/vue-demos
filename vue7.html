@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="col-md-6 col-md-offset-3">
+            <h1>Vue demo</h1>
+            <div id="app">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>序号</th>
+                        <th>书名</th>
+                        <th>作者</th>
+                        <th>价格</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr v-for="book in books">
+                        <td>{{book.id}}</td>
+                        <td>{{book.name}}</td>
+                        <td>{{book.author}}</td>
+                        <td>{{book.price}}</td>
+                        <td><button type="button" class="btn btn-danger" @click="del(book)">删除</button>
+                        </td>
+                    </tr>
+                </table>
+                <div id="add">
+                    <legend>添加书籍</legend>
+                    <div class="form-group">
+                        <label>书名</label>
+                        <input type="text" class="form-control" v-model="book.name">
+                    </div>
+                    <div class="form-group">
+                        <label>作者</label>
+                        <input type="text" class="form-control" v-model="book.author">
+                    </div>
+                    <div class="form-group">
+                        <label>价格</label>
+                        <input type="text" class="form-control" v-model="book.price">
+                    </div>
+                    <button class="btn btn-block btn-success" v-on:click="add">add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script type="text/javascript" src="vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: '#app',
+        data: {
+            book:{id:0,author:'',name:'',price:''},
+            books: [{id: 1,
+                author: '曹雪芹',
+                name: '红楼梦',
+                price: 32.0
+            }, {
+                id: 2,
+                author: '施耐庵',
+                name: '水浒传',
+                price: 30.0
+            }, {id: '3',
+                author: '罗贯中',
+                name: '三国演义',
+                price: 24.0
+            }, {
+                id: 4,
+                author: '吴承恩',
+                name: '西游记',
+                price: 20.0
+            }]
+        },
+        methods:{
+            add:function () {
+                this.book.id=this.books.length+1;
+                this.books.push(this.book);
+                this.book={
+                    id:0,author:'',name:'',price:''
+                }
+            },
+            del:function (book) {
+                var index = this.books.indexOf(book)
+                this.books.splice(index, 1)
+                }
+            }
+        })
+
+</script>
+</html>
