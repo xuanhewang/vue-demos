@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app" >
+        <!-- 直接绑定对象的内容 -->
+        <p class='static' v-bind:class="{active:isActive,error:hasError}">Hello world!</p>
+        <!--  绑定对象 -->
+        <p v-bind:class="classObj">こんにちは</p>
+        <p v-bind:class='style' >你好</p>
+        <!-- 绑定数组 -->
+        <p v-bind:class="[staticClass,activeClass,errorClass]">
+            Olá</p>
+        <button @click='changeColor'>click me</button>
+    </div>
+</body>
+<style>
+    .static{
+        width: 200px;
+        height: 100px;
+        background: #ccc;
+    }
+    .active{
+        color:red;
+    }
+    .error{
+        font-weight: 800;
+    }
+</style>
+<script type="text/javascript" src="vue.js"></script>
+<script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data:{
+            isActive:true,
+            hasError:true,
+            classObj:{
+                static:true,
+                active:true,
+                error:true,
+            },
+            staticClass:'static',
+            activeClass:'active',
+            errorClass:'error',
+
+        },
+        computed:{
+            style:function(){
+                return {
+                    active: this.isActive,
+                    static:true,
+                    error:this.hasError
+                }
+            }
+        },
+        methods:{
+            changeColor:function(){
+                this.isActive = !this.isActive
+            }
+        }
+    })
+</script>
+</html>
