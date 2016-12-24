@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <p v-bind:style="color">{{message}}</p>
+    <button v-on:click="sayHello">点击我</button>
+    <div v-html="hi"></div>
+</div>
+</body>
+<script type="text/javascript" src="vue.js"></script>
+<script type="text/javascript">
+    var app=new Vue({
+        el:'#app',
+        data:{
+            message:'hello vue',
+            sayHello:function () {
+                alert('sb');
+            },
+            hi:'<h1>这是插入的内容</h1>',
+            color:'color:red'
+        }
+    })
+    //获取app实例中的选项的对象
+    console.log(app.$el===document.getElementById("app"));
+    console.log(app.$data.message);
+</script>
+</html>
